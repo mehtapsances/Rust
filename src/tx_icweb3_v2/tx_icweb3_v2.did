@@ -1,0 +1,26 @@
+type AccountInfo = record {
+    address : text;
+    pub_key : text;
+};
+type CandidSignedTransaction = record {
+    message_hash : text;
+    v : nat64;
+    r : text;
+    s : text;
+    raw_transaction : text;
+    transaction_hash : text;
+};
+service : {
+    "account_info": () -> (variant { Ok : AccountInfo; Err : text });
+    "rpc_endpoint": () -> (text);
+    "pub_key": () -> (text);
+    "eth_addr": () -> (text);
+    "balance_of": (text, text) -> (variant { Ok : nat; Err : text });
+    "balance_of_dai": (text) -> (variant { Ok : nat; Err : text });
+    "send_erc20_signed_tx": (text, text, nat64) -> (variant { Ok : CandidSignedTransaction; Err : text });
+    "send_erc20": (text, text, nat64) -> (variant { Ok : text; Err : text });
+    "mint_erc20_signed_tx": (text, nat64) -> (variant { Ok : CandidSignedTransaction; Err : text });
+    "mint_erc20": (text, nat64) -> (variant { Ok : text; Err : text });
+    "mint_dai_signed_tx": (nat64) -> (variant { Ok : CandidSignedTransaction; Err : text });
+    "mint_dai": (nat64) -> (variant { Ok : text; Err : text });
+}

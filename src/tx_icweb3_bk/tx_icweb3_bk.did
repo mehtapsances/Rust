@@ -1,0 +1,7 @@
+type Result = variant { Ok : text; Err : text };
+
+service : {
+    "greet": (text) -> (text) query;
+    "eth_addr": () -> (text);
+    "send_eth": (text, nat64) -> (Result);
+}
